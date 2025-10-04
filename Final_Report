@@ -1,1 +1,78 @@
 
+---
+
+# 05_Final_Report/README.md
+
+```markdown
+# 05_Final_Report
+**Deliverable:** Complete SOC Investigation & Lab Summary report for portfolio / employers
+
+---
+
+## Purpose
+This folder contains the final polished report summarizing the entire home-lab SOC project: Wazuh setup, attack simulations, endpoint detections, threat hunting, and lessons learned. It is written in a professional, executive-friendly format suitable for attaching to job applications.
+
+---
+
+## Final report structure (suggested)
+- **Title Page**
+  - Project name, your name, date, short description
+- **Executive Summary** (1 paragraph)
+  - High-level findings and outcomes
+- **Environment & Architecture**
+  - Diagram (include `/screenshots/soc_lab_architecture.png`)
+  - VM specs and IP mapping
+- **Deployment Steps**
+  - Key commands and notes for Wazuh deploy
+- **Incident Case Studies**
+  - 2–3 incidents (from `02_Attack_Simulations`) with timelines, logs, screenshots, MITRE mapping
+- **Threat Hunting Summary**
+  - Example hunts and outcomes
+- **Recommendations & Remediation**
+  - Short-term and long-term remediation steps
+- **Appendix**
+  - Full log snippets (redacted), config files, credentials used in lab (note they are test creds)
+
+---
+
+## Example Executive Summary
+> This portfolio documents a home-lab SOC built with Wazuh, a Windows 10 endpoint instrumented with Sysmon and Wazuh Agent, and a Kali Linux attacker VM. Multiple simulated threat scenarios (brute force, PowerShell abuse, port scans) were executed and successfully detected. Alerts were triaged, mapped to MITRE ATT&CK, and documented with recommended remediation steps. This demonstrates end-to-end SOC analyst skills: deployment, detection, investigation, and reporting.
+
+---
+
+## Required files (deliverable)
+- `SOC_Final_Report.pdf` — polished PDF (exported from markdown)
+- `SOC_Final_Report.md` — source markdown
+- `screenshots/`:
+  - `soc_lab_architecture.png`
+  - `final_incident_timeline.png`
+  - `final_executive_dashboard.png`
+- `appendix/` — raw logs and configs
+
+---
+
+## Report checklist before publishing
+- [ ] All screenshots present and properly named
+- [ ] Sensitive data redacted
+- [ ] MITRE IDs included for all incidents
+- [ ] Short remediation items for each incident
+- [ ] PDF generated and linked in repo root
+
+---
+
+## Example incident summary (short)
+**Incident 1 — RDP Brute Force (2025-10-02)**  
+- **Detection:** Multiple failed RDP login attempts followed by success (Wazuh rule 5716)  
+- **Source IP:** 192.168.56.30 (Kali)  
+- **Timeline:** 10:01 — 10:07 UTC (25 failed attempts, 1 success)  
+- **MITRE Technique:** T1110 (Brute Force)  
+- **Remediation:** Block source IP, enforce lockout policy, rotate affected account credentials, enable MFA.
+
+---
+
+## How to produce the PDF
+On your local machine:
+```bash
+# if you use pandoc
+pandoc SOC_Final_Report.md -o SOC_Final_Report.pdf --pdf-engine=xelatex
+
