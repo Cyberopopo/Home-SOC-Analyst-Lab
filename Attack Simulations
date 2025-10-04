@@ -1,1 +1,37 @@
+---
 
+# 02_Attack_Simulations/README.md
+
+```markdown
+# 02_Attack_Simulations
+**Project:** Attack simulation against Windows endpoint to generate SIEM events  
+**Objective:** Simulate common attack techniques (brute-force, port scanning, file drop) from Kali Linux and confirm detections in Wazuh.
+
+---
+
+## Attack types covered
+- SSH / RDP Brute Force (T1110)
+- Port Scan (T1046)
+- Suspicious Process Launch (PowerShell abuse, T1059)
+- EICAR / benign malware test (detection by AV & EDR)
+
+---
+
+## Setup (pre-requisite)
+- Wazuh Server running and reachable
+- Wazuh Agent installed on Windows 10 VM
+- Kali Linux VM on same NAT/host-only network
+
+Example IPs:
+- Wazuh: `192.168.56.10`
+- Windows: `192.168.56.20`
+- Kali: `192.168.56.30`
+
+---
+
+## Simulations — commands & steps
+
+### 1) Port scan (Nmap)
+From Kali:
+```bash
+nmap -sS -Pn -p- 192.168.56.20 -oN scans/scan_full_tcp.txt
